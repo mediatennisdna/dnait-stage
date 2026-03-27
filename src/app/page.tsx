@@ -210,7 +210,7 @@ export default function MarketSelector() {
   return (
     <div
       ref={containerRef}
-      className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden"
+      className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden px-4 py-12 md:py-16"
       style={{ backgroundColor: brand.bg }}
     >
       {/* Background elements */}
@@ -256,16 +256,16 @@ export default function MarketSelector() {
 
       {/* Logo - LARGER */}
       <motion.div
-        className="text-center mb-12 relative z-10"
+        className="text-center mb-6 md:mb-10 relative z-10"
         initial={{ opacity: 0, y: -30, scale: 0.8 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 1, ease: 'easeOut' }}
       >
-        <div className="flex items-center justify-center mb-4">
+        <div className="flex items-center justify-center mb-3">
           <img
             src="/img/logos/DNAITSTAGE-06.png"
             alt="DNAIT STAGE"
-            className="h-24 md:h-32 lg:h-40 w-auto drop-shadow-lg"
+            className="h-20 md:h-28 lg:h-36 w-auto drop-shadow-lg"
           />
         </div>
         <motion.p
@@ -290,7 +290,7 @@ export default function MarketSelector() {
 
       {/* Subtitle */}
       <motion.p
-        className="text-center mb-10 text-lg md:text-xl max-w-lg px-6 relative z-10"
+        className="text-center mb-6 md:mb-8 text-base md:text-lg max-w-lg px-4 relative z-10"
         style={{ color: brand.textSecondary }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -301,7 +301,7 @@ export default function MarketSelector() {
 
       {/* Market Cards */}
       <motion.div
-        className="flex flex-col md:flex-row gap-6 md:gap-8 px-6 max-w-4xl w-full relative z-10"
+        className="flex flex-col md:flex-row gap-4 md:gap-6 px-4 max-w-4xl w-full relative z-10"
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6, duration: 0.8 }}
@@ -311,7 +311,7 @@ export default function MarketSelector() {
           onClick={() => handleSelect('es')}
           onMouseEnter={() => setHoveredCard('es')}
           onMouseLeave={() => setHoveredCard(null)}
-          className="flex-1 group relative overflow-hidden rounded-2xl p-8 md:p-10 text-left transition-all duration-500 cursor-pointer backdrop-blur-sm"
+          className="flex-1 group relative overflow-hidden rounded-2xl p-6 md:p-8 text-left transition-all duration-500 cursor-pointer backdrop-blur-sm"
           style={{
             backgroundColor: `${brand.surface}F0`,
             border: `1px solid ${hoveredCard === 'es' ? brand.red : brand.border}`,
@@ -372,7 +372,7 @@ export default function MarketSelector() {
           onClick={() => handleSelect('en')}
           onMouseEnter={() => setHoveredCard('en')}
           onMouseLeave={() => setHoveredCard(null)}
-          className="flex-1 group relative overflow-hidden rounded-2xl p-8 md:p-10 text-left transition-all duration-500 cursor-pointer backdrop-blur-sm"
+          className="flex-1 group relative overflow-hidden rounded-2xl p-6 md:p-8 text-left transition-all duration-500 cursor-pointer backdrop-blur-sm"
           style={{
             backgroundColor: `${brand.surface}F0`,
             border: `1px solid ${hoveredCard === 'en' ? brand.lime : brand.border}`,
@@ -433,7 +433,7 @@ export default function MarketSelector() {
 
       {/* Stats Bar */}
       <motion.div
-        className="flex flex-wrap justify-center gap-8 md:gap-12 mt-12 px-6 relative z-10"
+        className="flex flex-wrap justify-center gap-6 md:gap-10 mt-8 md:mt-10 px-4 relative z-10"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.9, duration: 0.8 }}
@@ -453,7 +453,7 @@ export default function MarketSelector() {
 
       {/* Bottom line */}
       <motion.div
-        className="absolute bottom-6 text-center text-xs tracking-wider"
+        className="mt-10 md:mt-12 text-center text-xs tracking-wider relative z-10"
         style={{ color: brand.textMuted }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
