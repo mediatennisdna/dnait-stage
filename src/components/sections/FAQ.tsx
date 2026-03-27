@@ -47,13 +47,15 @@ export default function FAQ({ data }: FAQProps) {
             >
               <button
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                className="w-full flex items-center justify-between px-6 py-5 text-left group"
+                aria-expanded={openIndex === i}
+                aria-controls={`faq-answer-${i}`}
+                className="w-full flex items-center justify-between px-6 py-5 text-left group focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#BBFF67]"
               >
-                <span className="font-medium text-[#E5E7EB] group-hover:text-white transition-colors pr-4">{item.q}</span>
+                <span id={`faq-q-${i}`} className="font-medium text-[#E5E7EB] group-hover:text-white transition-colors pr-4">{item.q}</span>
                 <motion.svg
                   animate={{ rotate: openIndex === i ? 180 : 0 }}
                   transition={{ duration: 0.2 }}
-                  className="w-5 h-5 text-[#6B7280] flex-shrink-0"
+                  className="w-5 h-5 text-[#9CA3AF] flex-shrink-0"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -72,7 +74,7 @@ export default function FAQ({ data }: FAQProps) {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <div className="px-6 pb-5 text-[#9CA3AF] text-sm leading-relaxed border-t border-white/5 pt-4">
+                    <div id={`faq-answer-${i}`} role="region" aria-labelledby={`faq-q-${i}`} className="px-6 pb-5 text-[#9CA3AF] text-sm leading-relaxed border-t border-white/5 pt-4">
                       {item.a}
                     </div>
                   </motion.div>

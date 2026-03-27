@@ -6,7 +6,7 @@ import { motion, useInView, AnimatePresence } from 'framer-motion'
 const typeColors: Record<string, { bg: string; text: string; border: string }> = {
   arrival: { bg: 'rgba(107,114,128,0.1)', text: '#9CA3AF', border: 'rgba(107,114,128,0.2)' },
   training: { bg: 'rgba(187,255,103,0.08)', text: '#BBFF67', border: 'rgba(187,255,103,0.2)' },
-  adventure: { bg: 'rgba(200,16,46,0.08)', text: '#C8102E', border: 'rgba(200,16,46,0.2)' },
+  adventure: { bg: 'rgba(229,52,78,0.08)', text: '#E5344E', border: 'rgba(229,52,78,0.2)' },
   competition: { bg: 'rgba(212,168,83,0.08)', text: '#D4A853', border: 'rgba(212,168,83,0.2)' },
   departure: { bg: 'rgba(107,114,128,0.1)', text: '#9CA3AF', border: 'rgba(107,114,128,0.2)' },
 }
@@ -60,6 +60,8 @@ export default function Schedule({ data }: ScheduleProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
+          role="tablist"
+          aria-label="Schedule days"
           className="flex justify-center gap-2 md:gap-3 mb-10 overflow-x-auto pb-2"
         >
           {data.days.map((d, i) => {
@@ -68,16 +70,19 @@ export default function Schedule({ data }: ScheduleProps) {
               <button
                 key={i}
                 onClick={() => setActiveDay(i)}
-                className={`flex flex-col items-center px-3 md:px-5 py-3 rounded-xl transition-all duration-300 min-w-[56px] ${
+                aria-label={`Day ${d.day}: ${d.title}`}
+                aria-selected={activeDay === i}
+                role="tab"
+                className={`flex flex-col items-center px-3 md:px-5 py-4 rounded-xl transition-all duration-300 min-w-[56px] focus:outline-none focus:ring-2 focus:ring-[#BBFF67] ${
                   activeDay === i
                     ? 'bg-white/10 border border-white/20 scale-105'
                     : 'bg-white/3 border border-transparent hover:bg-white/5'
                 }`}
               >
-                <span className={`text-lg md:text-xl font-bold ${activeDay === i ? 'text-white' : 'text-[#6B7280]'}`} style={{ fontFamily: "'Space Grotesk', system-ui" }}>
+                <span className={`text-lg md:text-xl font-bold ${activeDay === i ? 'text-white' : 'text-[#9CA3AF]'}`} style={{ fontFamily: "'Space Grotesk', system-ui" }}>
                   {d.day}
                 </span>
-                <span className={`text-[9px] tracking-wider uppercase ${activeDay === i ? 'text-[#9CA3AF]' : 'text-[#4B5563]'}`}>
+                <span className={`text-[9px] tracking-wider uppercase ${activeDay === i ? 'text-[#9CA3AF]' : 'text-[#6B7280]'}`}>
                   {d.date.split(' ')[0]}
                 </span>
                 <div className="w-2 h-2 rounded-full mt-1.5" style={{ backgroundColor: c.text, opacity: activeDay === i ? 1 : 0.3 }} />

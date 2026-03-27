@@ -56,7 +56,7 @@ export default function Hero({ data, market, onCTA, onSecondary }: HeroProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.15 }}
-          className="text-[#D4A853] italic text-lg md:text-xl mb-4 tracking-wide"
+          className="text-[#E8BF6A] italic text-lg md:text-xl mb-4 tracking-wide"
           style={{ fontFamily: "'Space Grotesk', system-ui" }}
         >
           {data.claim}
@@ -86,7 +86,7 @@ export default function Hero({ data, market, onCTA, onSecondary }: HeroProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.6 }}
-          className="text-[#6B7280] text-xs tracking-[0.25em] uppercase mb-6"
+          className="text-[#9CA3AF] text-xs tracking-[0.25em] uppercase mb-6"
         >
           {data.fullName}
         </motion.p>
@@ -110,7 +110,7 @@ export default function Hero({ data, market, onCTA, onSecondary }: HeroProps) {
         >
           <button
             onClick={onCTA}
-            className="inline-flex items-center gap-2 bg-[#BBFF67] text-[#050505] px-8 py-4 rounded-xl font-bold text-base hover:bg-[#9ae043] transition-all hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(187,255,103,0.25)]"
+            className="inline-flex items-center gap-2 bg-[#BBFF67] text-[#050505] px-8 py-4 rounded-xl font-bold text-base hover:bg-[#9ae043] transition-all hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(187,255,103,0.25)] focus:outline-none focus:ring-2 focus:ring-[#BBFF67] focus:ring-offset-2 focus:ring-offset-[#050505]"
           >
             {data.cta}
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -119,7 +119,7 @@ export default function Hero({ data, market, onCTA, onSecondary }: HeroProps) {
           </button>
           <button
             onClick={onSecondary}
-            className="inline-flex items-center gap-2 bg-transparent text-white px-8 py-4 rounded-xl font-bold text-base border border-white/15 hover:bg-white/5 transition-all"
+            className="inline-flex items-center gap-2 bg-transparent text-white px-8 py-4 rounded-xl font-bold text-base border border-white/15 hover:bg-white/5 transition-all focus:outline-none focus:ring-2 focus:ring-[#BBFF67]"
           >
             {data.ctaSecondary}
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -138,7 +138,7 @@ export default function Hero({ data, market, onCTA, onSecondary }: HeroProps) {
           {data.stats.map((stat) => (
             <div key={stat.label} className="text-center">
               <div className="text-3xl md:text-4xl font-bold text-[#BBFF67]" style={{ fontFamily: "'Space Grotesk', system-ui" }}>{stat.value}</div>
-              <div className="text-[10px] tracking-[0.25em] text-[#6B7280] mt-1 font-medium">{stat.label}</div>
+              <div className="text-[10px] tracking-[0.25em] text-[#9CA3AF] mt-1 font-medium">{stat.label}</div>
             </div>
           ))}
         </motion.div>
@@ -155,7 +155,7 @@ export default function Hero({ data, market, onCTA, onSecondary }: HeroProps) {
           animate={{ y: [0, 8, 0] }}
           transition={{ repeat: Infinity, duration: 2 }}
         >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4B5563" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <path d="M6 9l6 6 6-6"/>
           </svg>
         </motion.div>

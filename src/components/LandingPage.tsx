@@ -39,6 +39,16 @@ export default function LandingPage({ market }: { market: Market }) {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Close mobile menu on Escape key
+  useEffect(() => {
+    if (!mobileMenuOpen) return
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMobileMenuOpen(false)
+    }
+    document.addEventListener('keydown', handleEscape)
+    return () => document.removeEventListener('keydown', handleEscape)
+  }, [mobileMenuOpen])
+
   const scrollTo = (id: string) => {
     const el = document.getElementById(id)
     if (el) {
@@ -52,8 +62,16 @@ export default function LandingPage({ market }: { market: Market }) {
 
   return (
     <div className="min-h-screen bg-[#050505] text-white">
+      {/* Skip to content */}
+      <a
+        href="#about"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[60] focus:bg-[#BBFF67] focus:text-[#050505] focus:px-4 focus:py-2 focus:rounded-lg focus:font-bold focus:text-sm"
+      >
+        {market === 'es' ? 'Saltar al contenido' : 'Skip to content'}
+      </a>
+
       {/* Navigation */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-[#050505]/95 backdrop-blur-md border-b border-white/5 py-3' : 'bg-transparent py-5'}`}>
+      <nav aria-label={market === 'es' ? 'Navegación principal' : 'Main navigation'} className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-[#050505]/95 backdrop-blur-md border-b border-white/5 py-3' : 'bg-transparent py-5'}`}>
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           {/* Logo */}
           <a href={`/${market}`} className="flex items-center">
@@ -70,7 +88,8 @@ export default function LandingPage({ market }: { market: Market }) {
               <button
                 key={i}
                 onClick={() => scrollTo(sectionIds[i])}
-                className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
+                aria-current={activeSection === sectionIds[i] ? 'true' : undefined}
+                className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#BBFF67] ${
                   activeSection === sectionIds[i]
                     ? 'text-[#BBFF67] bg-[#BBFF67]/8'
                     : 'text-[#9CA3AF] hover:text-white hover:bg-white/5'
@@ -85,7 +104,7 @@ export default function LandingPage({ market }: { market: Market }) {
           <div className="flex items-center gap-3">
             <a
               href={`/${otherMarket}`}
-              className="hidden sm:flex items-center gap-2 px-3 py-1.5 text-xs font-medium text-[#9CA3AF] hover:text-white border border-white/10 rounded-full hover:border-white/20 transition-all"
+              className="hidden sm:flex items-center gap-2 px-4 py-2 text-xs font-medium text-[#9CA3AF] hover:text-white border border-white/10 rounded-full hover:border-white/20 transition-all focus:outline-none focus:ring-2 focus:ring-[#BBFF67]"
             >
               {market === 'es' ? (
                 <svg width="16" height="12" viewBox="0 0 16 12" className="rounded-sm overflow-hidden">
@@ -110,14 +129,16 @@ export default function LandingPage({ market }: { market: Market }) {
             </a>
             <button
               onClick={() => scrollTo('form')}
-              className="bg-[#BBFF67] text-[#050505] px-5 py-2.5 rounded-xl text-sm font-bold hover:bg-[#9ae043] transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(187,255,103,0.25)]"
+              className="bg-[#BBFF67] text-[#050505] px-5 py-2.5 rounded-xl text-sm font-bold hover:bg-[#9ae043] transition-all hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(187,255,103,0.25)] focus:outline-none focus:ring-2 focus:ring-[#BBFF67] focus:ring-offset-2 focus:ring-offset-[#050505]"
             >
               {c.nav.cta}
             </button>
             {/* Mobile menu toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 text-[#9CA3AF] hover:text-white"
+              aria-label={mobileMenuOpen ? (market === 'es' ? 'Cerrar menú' : 'Close menu') : (market === 'es' ? 'Abrir menú' : 'Open menu')}
+              aria-expanded={mobileMenuOpen}
+              className="lg:hidden p-2 text-[#9CA3AF] hover:text-white focus:outline-none focus:ring-2 focus:ring-[#BBFF67] rounded-lg"
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                 {mobileMenuOpen ? (
@@ -151,7 +172,7 @@ export default function LandingPage({ market }: { market: Market }) {
                 ))}
                 <a
                   href={`/${otherMarket}`}
-                  className="px-4 py-3 text-sm font-medium text-[#D4A853] hover:bg-white/5 rounded-lg transition-all"
+                  className="px-4 py-3 text-sm font-medium text-[#E8BF6A] hover:bg-white/5 rounded-lg transition-all"
                 >
                   {switchLabel}
                 </a>
@@ -194,7 +215,7 @@ function CTA({ data, onCTA }: { data: typeof content.es.cta; onCTA: () => void }
       <div className="absolute inset-0 bg-gradient-to-b from-[#050505] via-[#0a0f14] to-[#050505]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(187,255,103,0.05)_0%,transparent_70%)]" />
       <div className="max-w-3xl mx-auto px-6 text-center relative z-10">
-        <p className="text-[#D4A853] italic text-lg mb-4" style={{ fontFamily: "'Space Grotesk', system-ui" }}>
+        <p className="text-[#E8BF6A] italic text-lg mb-4" style={{ fontFamily: "'Space Grotesk', system-ui" }}>
           {data.claim}
         </p>
         <h2 className="text-3xl md:text-5xl font-bold mb-4" style={{ fontFamily: "'Space Grotesk', system-ui" }}>
@@ -203,7 +224,7 @@ function CTA({ data, onCTA }: { data: typeof content.es.cta; onCTA: () => void }
         <p className="text-[#9CA3AF] text-lg mb-8">{data.subtitle}</p>
         <button
           onClick={onCTA}
-          className="inline-flex items-center gap-2 bg-[#BBFF67] text-[#050505] px-8 py-4 rounded-xl font-bold text-lg hover:bg-[#9ae043] transition-all hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(187,255,103,0.3)]"
+          className="inline-flex items-center gap-2 bg-[#BBFF67] text-[#050505] px-8 py-4 rounded-xl font-bold text-lg hover:bg-[#9ae043] transition-all hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(187,255,103,0.3)] focus:outline-none focus:ring-2 focus:ring-[#BBFF67] focus:ring-offset-2 focus:ring-offset-[#050505]"
         >
           {data.button}
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">

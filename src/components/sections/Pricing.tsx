@@ -74,12 +74,12 @@ export default function Pricing({ data, market, onCTA }: PricingProps) {
               <h3 className="text-xl font-bold mb-1" style={{ fontFamily: "'Space Grotesk', system-ui" }}>
                 {pack.name}
               </h3>
-              <p className="text-[#6B7280] text-sm mb-6">{pack.description}</p>
+              <p className="text-[#9CA3AF] text-sm mb-6">{pack.description}</p>
 
               <div className="mb-6">
-                <span className="text-[#6B7280] text-2xl align-top">{data.currency}</span>
+                <span className="text-[#9CA3AF] text-2xl align-top">{data.currency}</span>
                 <span className="text-5xl font-bold" style={{ fontFamily: "'Space Grotesk', system-ui" }}>{pack.price}</span>
-                <span className="text-[#6B7280] text-sm ml-2">/ {pack.period}</span>
+                <span className="text-[#9CA3AF] text-sm ml-2">/ {pack.period}</span>
               </div>
 
               <ul className="space-y-3 mb-8">
@@ -95,7 +95,8 @@ export default function Pricing({ data, market, onCTA }: PricingProps) {
 
               <button
                 onClick={onCTA}
-                className={`w-full py-3.5 rounded-xl font-bold text-sm transition-all ${
+                aria-label={`${pack.cta} — ${pack.name}`}
+                className={`w-full py-3.5 rounded-xl font-bold text-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#BBFF67] focus:ring-offset-2 focus:ring-offset-[#050505] ${
                   pack.recommended
                     ? 'bg-[#BBFF67] text-[#050505] hover:bg-[#9ae043] hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(187,255,103,0.25)]'
                     : 'bg-white/8 text-white border border-white/10 hover:bg-white/12'
@@ -116,7 +117,7 @@ export default function Pricing({ data, market, onCTA }: PricingProps) {
         >
           {/* Extras */}
           <div className="bg-[#0a0f14] border border-white/5 rounded-2xl p-8">
-            <h3 className="text-lg font-bold mb-6 flex items-center gap-2 text-[#D4A853]" style={{ fontFamily: "'Space Grotesk', system-ui" }}>
+            <h3 className="text-lg font-bold mb-6 flex items-center gap-2 text-[#E8BF6A]" style={{ fontFamily: "'Space Grotesk', system-ui" }}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/>
               </svg>
