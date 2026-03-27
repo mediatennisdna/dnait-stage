@@ -73,8 +73,22 @@ export default function Coaches({ data }: CoachesProps) {
                     key={mi}
                     className="bg-[#050505] border border-white/5 rounded-2xl p-6 hover:border-white/10 transition-all group"
                   >
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-white/10 to-white/5 flex items-center justify-center mb-4 text-lg font-bold text-[#BBFF67]" style={{ fontFamily: "'Space Grotesk', system-ui" }}>
-                      {member.name.charAt(0)}
+                    <div className="w-14 h-14 rounded-full overflow-hidden mb-4 border-2 border-white/10 relative">
+                      {/* Replace src with real coach photo: /img/coaches/firstname-lowercase.jpg */}
+                      <img
+                        src={`/img/coaches/${member.name.split(' ')[0].toLowerCase()}.jpg`}
+                        alt={member.name}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          const target = e.currentTarget;
+                          target.style.display = 'none';
+                          const fallback = target.nextElementSibling as HTMLElement;
+                          if (fallback) fallback.style.display = 'flex';
+                        }}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 items-center justify-center text-lg font-bold text-[#BBFF67] hidden" style={{ fontFamily: "'Space Grotesk', system-ui" }}>
+                        {member.name.charAt(0)}
+                      </div>
                     </div>
                     <h4 className="text-white font-bold mb-1">{member.name}</h4>
                     <p className="text-[#D4A853] text-xs font-semibold mb-3">{member.role}</p>

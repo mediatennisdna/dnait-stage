@@ -96,8 +96,21 @@ export default function Schedule({ data }: ScheduleProps) {
             transition={{ duration: 0.3 }}
             className="max-w-3xl mx-auto"
           >
-            <div className="bg-[#0a0f14] border border-white/5 rounded-2xl p-8 md:p-10">
-              <div className="flex items-start justify-between mb-6">
+            <div className="bg-[#0a0f14] border border-white/5 rounded-2xl overflow-hidden">
+              {/* Activity image — add photos to /img/activities/day-1.jpg through day-8.jpg */}
+              <div className="h-48 relative overflow-hidden">
+                <img
+                  src={`/img/activities/day-${day.day}.jpg`}
+                  alt={day.title}
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    (e.currentTarget.parentElement as HTMLElement).style.display = 'none';
+                  }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f14] to-transparent" />
+              </div>
+              <div className="p-8 md:p-10">
+                <div className="flex items-start justify-between mb-6">
                 <div>
                   <div className="flex items-center gap-3 mb-2">
                     <span className="text-3xl font-bold" style={{ fontFamily: "'Space Grotesk', system-ui", color: colors.text }}>
@@ -128,6 +141,7 @@ export default function Schedule({ data }: ScheduleProps) {
                     <span className="text-[#D1D5DB]">{h}</span>
                   </div>
                 ))}
+              </div>
               </div>
             </div>
           </motion.div>

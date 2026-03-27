@@ -60,8 +60,7 @@ export default function About({ data, market }: AboutProps) {
             {data.title}
           </h2>
           <div className="w-12 h-1 bg-gradient-to-r from-[#BBFF67] to-[#C8102E] rounded mb-6" />
-          <p className="text-[#9CA3AF] text-lg leading-relaxed mb-4">{data.description}</p>
-          <p className="text-[#D4A853] italic">{data.secondary}</p>
+          <p className="text-[#9CA3AF] text-lg leading-relaxed">{data.description}</p>
         </motion.div>
 
         {/* Marketing angle */}

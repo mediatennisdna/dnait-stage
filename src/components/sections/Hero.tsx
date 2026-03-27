@@ -21,18 +21,23 @@ interface HeroProps {
 export default function Hero({ data, market, onCTA, onSecondary }: HeroProps) {
   return (
     <section className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden pt-20 pb-16 px-6">
-      {/* Background */}
+      {/* Background Video — replace /video/hero.mp4 with your video file */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#050505] via-[#050505] to-[#0a0f14]" />
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="/img/hero-poster.jpg"
+          className="absolute inset-0 w-full h-full object-cover opacity-30"
+        >
+          <source src="/video/hero.mp4" type="video/mp4" />
+        </video>
+        {/* Dark overlay on top of video */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/80 via-[#050505]/70 to-[#050505]" />
+        {/* Colored radial accents */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-[radial-gradient(ellipse,rgba(187,255,103,0.06)_0%,transparent_70%)]" />
         <div className="absolute bottom-0 right-0 w-[500px] h-[400px] bg-[radial-gradient(ellipse,rgba(200,16,46,0.04)_0%,transparent_70%)]" />
-        <div className="absolute top-1/3 left-0 w-[400px] h-[300px] bg-[radial-gradient(ellipse,rgba(212,168,83,0.03)_0%,transparent_70%)]" />
-        {/* Tennis ball decoration */}
-        <svg className="absolute top-20 right-[10%] w-64 h-64 opacity-[0.02] rotate-12" viewBox="0 0 200 200">
-          <circle cx="100" cy="100" r="90" fill="none" stroke="#BBFF67" strokeWidth="3"/>
-          <path d="M30 60 Q100 100 30 140" fill="none" stroke="#BBFF67" strokeWidth="3"/>
-          <path d="M170 60 Q100 100 170 140" fill="none" stroke="#BBFF67" strokeWidth="3"/>
-        </svg>
       </div>
 
       <div className="max-w-4xl mx-auto text-center relative z-10">

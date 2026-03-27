@@ -143,15 +143,12 @@ export default function Pricing({ data, market, onCTA }: PricingProps) {
             <div className="space-y-4">
               {data.discounts.map((d, i) => (
                 <div key={i} className="flex items-center justify-between gap-4">
-                  <div>
-                    <span className="text-white text-sm font-medium">{d.name}</span>
-                    <span className="text-[#6B7280] text-xs ml-2">{d.condition}</span>
-                  </div>
+                  <span className="text-[#9CA3AF] text-sm">{d.name} — {d.condition}</span>
                   <span className="text-[#BBFF67] font-bold text-sm whitespace-nowrap">{d.percent}</span>
                 </div>
               ))}
             </div>
-            <p className="text-[#4B5563] text-xs mt-4">{data.discountNote}</p>
+            <p className="text-[#9CA3AF] text-sm mt-4">{data.discountNote}</p>
           </div>
         </motion.div>
       </div>

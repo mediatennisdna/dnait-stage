@@ -56,16 +56,12 @@ export default function LandingPage({ market }: { market: Market }) {
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-[#050505]/95 backdrop-blur-md border-b border-white/5 py-3' : 'bg-transparent py-5'}`}>
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           {/* Logo */}
-          <a href={`/${market}`} className="flex items-center gap-2">
-            <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
-              <rect width="40" height="40" rx="8" fill="#050505" stroke="#BBFF67" strokeWidth="1.5"/>
-              <circle cx="20" cy="20" r="12" fill="none" stroke="#BBFF67" strokeWidth="1.5"/>
-              <path d="M10 15c5 2.5 10 2.5 15 0" fill="none" stroke="#BBFF67" strokeWidth="1.2"/>
-              <path d="M10 25c5-2.5 10-2.5 15 0" fill="none" stroke="#BBFF67" strokeWidth="1.2"/>
-            </svg>
-            <span className="text-lg font-bold tracking-tight" style={{ fontFamily: "'Space Grotesk', system-ui" }}>
-              DNAIT <span className="text-[#BBFF67]">STAGE</span>
-            </span>
+          <a href={`/${market}`} className="flex items-center">
+            <img
+              src="/img/logos/DNAITSTAGE-06.png"
+              alt="DNAIT STAGE"
+              className="h-8 w-auto"
+            />
           </a>
 
           {/* Desktop Nav */}

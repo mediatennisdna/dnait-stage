@@ -49,15 +49,23 @@ export default function Venues({ data }: VenuesProps) {
               transition={{ duration: 0.6, delay: 0.2 + i * 0.15 }}
               className="bg-[#0a0f14] border border-white/5 rounded-2xl overflow-hidden group hover:border-white/10 transition-all"
             >
-              {/* Map placeholder header */}
-              <div className="h-48 bg-gradient-to-br from-[#0a0f14] to-[#050505] relative flex items-center justify-center">
-                <div className="text-center">
-                  <svg className="w-10 h-10 mx-auto mb-2 text-[#6B7280]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
-                  </svg>
-                  <span className="text-[#D4A853] font-bold text-xl" style={{ fontFamily: "'Space Grotesk', system-ui" }}>{loc.city}</span>
+              {/* Venue image header */}
+              <div className="h-48 relative overflow-hidden">
+                <img
+                  src={`/img/venues/${i === 0 ? 'escorial' : 'gtennis'}.jpg`}
+                  alt={loc.name}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f14] via-[#0a0f14]/60 to-transparent" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center relative z-10">
+                    <svg className="w-10 h-10 mx-auto mb-2 text-white/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+                    </svg>
+                    <span className="text-[#D4A853] font-bold text-xl" style={{ fontFamily: "'Space Grotesk', system-ui" }}>{loc.city}</span>
+                  </div>
                 </div>
-                <div className="absolute top-4 right-4 bg-white/5 border border-white/10 rounded-lg px-3 py-1 text-xs text-[#9CA3AF]">
+                <div className="absolute top-4 right-4 bg-black/40 backdrop-blur-sm border border-white/10 rounded-lg px-3 py-1 text-xs text-white/80">
                   {i === 0 ? 'Days 1-5' : 'Days 6-8'}
                 </div>
               </div>

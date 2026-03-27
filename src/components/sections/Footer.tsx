@@ -36,6 +36,7 @@ export default function Footer({ data, market }: FooterProps) {
 
           {/* Tennis DNA */}
           <div>
+            <img src="/img/logos/tennis-dna.png" alt="Tennis DNA" className="h-8 mb-3 opacity-80" onError={(e) => { (e.currentTarget as HTMLElement).style.display = 'none' }} />
             <h4 className="text-sm font-bold mb-3 text-[#BBFF67]">{data.tdna.name}</h4>
             <a href={data.tdna.url} target="_blank" rel="noopener noreferrer" className="text-[#9CA3AF] text-sm hover:text-white transition-colors block mb-1">
               {data.tdna.url.replace('https://', '')}
@@ -45,6 +46,7 @@ export default function Footer({ data, market }: FooterProps) {
 
           {/* AIT Tenis */}
           <div>
+            <img src="/img/logos/ait-tenis.png" alt="AIT Tenis" className="h-8 mb-3 opacity-80" onError={(e) => { (e.currentTarget as HTMLElement).style.display = 'none' }} />
             <h4 className="text-sm font-bold mb-3 text-[#C8102E]">{data.ait.name}</h4>
             <a href={data.ait.url} target="_blank" rel="noopener noreferrer" className="text-[#9CA3AF] text-sm hover:text-white transition-colors block mb-1">
               {data.ait.url.replace('https://', '')}

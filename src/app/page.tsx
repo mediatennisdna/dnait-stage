@@ -39,16 +39,12 @@ export default function MarketSelector() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <div className="flex items-center justify-center gap-3 mb-3">
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-            <rect width="40" height="40" rx="8" fill="#050505" stroke="#BBFF67" strokeWidth="1.5"/>
-            <circle cx="20" cy="20" r="12" fill="none" stroke="#BBFF67" strokeWidth="1.5"/>
-            <path d="M10 15c5 2.5 10 2.5 15 0" fill="none" stroke="#BBFF67" strokeWidth="1.2"/>
-            <path d="M10 25c5-2.5 10-2.5 15 0" fill="none" stroke="#BBFF67" strokeWidth="1.2"/>
-          </svg>
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight" style={{ fontFamily: "'Space Grotesk', system-ui, sans-serif" }}>
-            DNAIT <span className="text-[#BBFF67]">STAGE</span>
-          </h1>
+        <div className="flex items-center justify-center mb-3">
+          <img
+            src="/img/logos/DNAITSTAGE-06.png"
+            alt="DNAIT STAGE"
+            className="h-16 md:h-20 w-auto"
+          />
         </div>
         <p className="text-[#9CA3AF] text-sm tracking-[0.2em] uppercase">International Tennis Experience</p>
         <p className="text-[#D4A853] italic mt-2 text-lg" style={{ fontFamily: "'Space Grotesk', system-ui, sans-serif" }}>
