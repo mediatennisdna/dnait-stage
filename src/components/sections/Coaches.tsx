@@ -18,7 +18,7 @@ interface CoachesProps {
   market?: string
 }
 
-const teamLogos = ['/img/logos/tennis-dna.png', '/img/logos/logo-aitenis.webp']
+const teamLogos = ['/img/logos/tennis-dna.png', '/img/logos/logo-ai-tennis.jpeg']
 
 export default function Coaches({ data, market = 'es' }: CoachesProps) {
   const ref = useRef(null)

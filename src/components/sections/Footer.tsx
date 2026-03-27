@@ -41,7 +41,7 @@ export default function Footer({ data, market }: FooterProps) {
 
           <a href={data.ait.url} target="_blank" rel="noopener noreferrer" className="group flex flex-col items-center">
             <img
-              src="/img/logos/logo-aitenis.webp"
+              src="/img/logos/logo-ai-tennis.jpeg"
               alt="AIT Tenis"
               className="h-16 md:h-20 w-auto mb-3 opacity-90 group-hover:opacity-100 transition-all group-hover:scale-105"
             />
@@ -66,11 +66,11 @@ export default function Footer({ data, market }: FooterProps) {
             </a>
             <div className="flex items-center justify-center gap-4">
               <a href={`https://instagram.com/${data.contact.ig1.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 transition-colors hover:opacity-100" style={{ color: brand.textMuted }}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="2" width="20" height="20" rx="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" /></svg>
                 <span className="text-xs">{data.contact.ig1}</span>
               </a>
               <a href={`https://instagram.com/${data.contact.ig2.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 transition-colors hover:opacity-100" style={{ color: brand.textMuted }}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="2" width="20" height="20" rx="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" /></svg>
                 <span className="text-xs">{data.contact.ig2}</span>
               </a>
             </div>

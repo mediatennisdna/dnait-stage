@@ -20,8 +20,18 @@ interface VenuesProps {
 }
 
 const venueImages: Record<number, string[]> = {
-  0: ['/img/venues/escorial.jpg', '/img/venues/el-escorial-interior.jpg', '/img/activities/day-2.jpg'],
-  1: ['/img/activities/day-6.jpg', '/img/activities/day-7.jpg', '/img/activities/Playa-de-las-Arenas-Valencia.jpg'],
+  0: [
+    '/img/venues/escorial.jpg',
+    '/img/venues/el-escorial-interior.jpg',
+    '/img/activities/day-2.jpg',
+    '/img/activities/puerta-del-sol-madrid.jpeg'
+  ],
+  1: [
+    '/img/activities/day-6.jpg',
+    '/img/activities/Playa-de-las-Arenas-Valencia.jpg',
+    '/img/activities/ciudad-artes-ciencias-noche-valencia-pexel256150.avif',
+    '/img/activities/day-7.jpg'
+  ],
 }
 
 export default function Venues({ data, market = 'es' }: VenuesProps) {

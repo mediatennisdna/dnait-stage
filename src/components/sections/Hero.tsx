@@ -162,20 +162,20 @@ export default function Hero({ data, market, onCTA, onSecondary }: HeroProps) {
           transition={{ delay: 1.1, duration: 0.6 }}
           className="flex items-center justify-center"
         >
-          <div className="flex items-center gap-6 md:gap-10 backdrop-blur-md rounded-2xl px-8 md:px-12 py-6" style={{ backgroundColor: `${brand.white}14`, border: `1px solid ${brand.white}26` }}>
+          <div className="flex items-center gap-8 md:gap-12 backdrop-blur-md rounded-3xl px-10 md:px-16 py-8" style={{ backgroundColor: `${brand.white}14`, border: `1px solid ${brand.white}26` }}>
             <img
               src="/img/logos/tennis-dna.png"
               alt="Tennis DNA"
-              className="h-14 md:h-20 w-auto"
+              className="h-16 md:h-24 w-auto rounded-xl"
             />
-            <div className="flex flex-col items-center px-2 md:px-4">
-              <span className="text-2xl font-bold" style={{ color: brand.lime }}>×</span>
-              <span className="text-[8px] md:text-[10px] tracking-widest uppercase" style={{ color: `${brand.white}80` }}>Partnership</span>
+            <div className="flex flex-col items-center px-3 md:px-5">
+              <span className="text-3xl font-bold" style={{ color: brand.lime }}>×</span>
+              <span className="text-[9px] md:text-[11px] tracking-widest uppercase font-medium" style={{ color: `${brand.white}80` }}>Partnership</span>
             </div>
             <img
-              src="/img/logos/logo-aitenis.webp"
+              src="/img/logos/logo-ai-tennis.jpeg"
               alt="AIT Tenis"
-              className="h-14 md:h-20 w-auto"
+              className="h-16 md:h-24 w-auto rounded-xl"
             />
           </div>
         </motion.div>

@@ -9,34 +9,55 @@ import gsap from 'gsap'
 // Tennis ball SVG component
 function TennisBall({ className, style }: { className?: string; style?: React.CSSProperties }) {
   return (
-    <svg viewBox="0 0 100 100" className={className} style={style}>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className={className} style={style}>
       <defs>
-        <radialGradient id="ballGradient" cx="35%" cy="35%" r="65%">
-          <stop offset="0%" stopColor="#D4E157" />
-          <stop offset="60%" stopColor={brand.lime} />
-          <stop offset="100%" stopColor="#9E9D24" />
-        </radialGradient>
-        <filter id="ballShadow" x="-50%" y="-50%" width="200%" height="200%">
-          <feDropShadow dx="2" dy="4" stdDeviation="3" floodOpacity="0.3" />
-        </filter>
+        <clipPath id="ballClip">
+          <circle cx="256" cy="256" r="220" />
+        </clipPath>
       </defs>
-      <circle cx="50" cy="50" r="48" fill="url(#ballGradient)" filter="url(#ballShadow)" />
-      {/* Tennis ball seam lines - realistic curved pattern */}
+
+      {/* Base */}
+      <circle cx="256" cy="256" r="220" fill="#D3E51A" />
+
+      {/* Sombra superior */}
       <path
-        d="M12 50 Q25 25 50 22 Q75 25 88 50"
-        fill="none"
-        stroke="#FAFAFA"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        opacity="0.85"
+        d="M118 78 C170 34 265 22 348 44 C389 55 421 71 446 95 C408 83 357 86 308 92 C253 100 199 104 154 99 C137 97 126 91 118 78 Z"
+        fill="#BFCE12"
+        clipPath="url(#ballClip)"
       />
+
+      {/* Sombra derecha */}
       <path
-        d="M12 50 Q25 75 50 78 Q75 75 88 50"
+        d="M354 90 C403 106 441 145 459 206 C475 264 467 339 438 397 C412 447 374 477 333 476 C308 475 293 469 278 456 C335 432 372 387 392 329 C409 279 411 219 401 170 C393 133 378 108 354 90 Z"
+        fill="#B6C70F"
+        clipPath="url(#ballClip)"
+      />
+
+      {/* Sombra inferior izquierda */}
+      <path
+        d="M70 392 C111 388 155 394 196 410 C219 419 239 430 252 443 C219 456 182 464 142 460 C109 457 84 437 70 392 Z"
+        fill="#C0D313"
+        clipPath="url(#ballClip)"
+      />
+
+      {/* Costura superior */}
+      <path
+        d="M50 136 C72 105 96 83 127 72 C176 55 229 66 283 90 C332 112 373 124 405 118 C430 113 447 118 462 138"
         fill="none"
-        stroke="#FAFAFA"
-        strokeWidth="2.5"
+        stroke="#EFEFD8"
+        strokeWidth="28"
         strokeLinecap="round"
-        opacity="0.85"
+        clipPath="url(#ballClip)"
+      />
+
+      {/* Costura inferior */}
+      <path
+        d="M42 392 C88 392 136 402 185 420 C223 433 257 447 287 462 C301 469 312 474 325 480"
+        fill="none"
+        stroke="#EFEFD8"
+        strokeWidth="22"
+        strokeLinecap="round"
+        clipPath="url(#ballClip)"
       />
     </svg>
   )
@@ -78,42 +99,42 @@ export default function MarketSelector() {
       duration: 1.2,
       ease: 'power2.out'
     })
-    .to(ball, {
-      x: '70vw',
-      y: '60vh',
-      rotation: 1080,
-      duration: 0.8,
-      ease: 'bounce.out'
-    })
-    .to(ball, {
-      x: '20vw',
-      y: '70vh',
-      rotation: 1440,
-      duration: 1,
-      ease: 'power1.inOut'
-    })
-    .to(ball, {
-      x: '80vw',
-      y: '20vh',
-      rotation: 1800,
-      duration: 1.2,
-      ease: 'power2.inOut'
-    })
-    .to(ball, {
-      x: '50vw',
-      y: '50vh',
-      rotation: 2160,
-      duration: 0.8,
-      ease: 'elastic.out(1, 0.5)'
-    })
-    .to(ball, {
-      x: '-10vw',
-      y: '80vh',
-      rotation: 2520,
-      scale: 0.5,
-      duration: 1,
-      ease: 'power2.in'
-    })
+      .to(ball, {
+        x: '70vw',
+        y: '60vh',
+        rotation: 1080,
+        duration: 0.8,
+        ease: 'bounce.out'
+      })
+      .to(ball, {
+        x: '20vw',
+        y: '70vh',
+        rotation: 1440,
+        duration: 1,
+        ease: 'power1.inOut'
+      })
+      .to(ball, {
+        x: '80vw',
+        y: '20vh',
+        rotation: 1800,
+        duration: 1.2,
+        ease: 'power2.inOut'
+      })
+      .to(ball, {
+        x: '50vw',
+        y: '50vh',
+        rotation: 2160,
+        duration: 0.8,
+        ease: 'elastic.out(1, 0.5)'
+      })
+      .to(ball, {
+        x: '-10vw',
+        y: '80vh',
+        rotation: 2520,
+        scale: 0.5,
+        duration: 1,
+        ease: 'power2.in'
+      })
 
     // Secondary floating ball (slower, ambient)
     if (ball2) {
@@ -335,7 +356,7 @@ export default function MarketSelector() {
             <div className="flex items-center gap-2 font-semibold text-sm" style={{ color: brand.lime }}>
               <span>Ver en español</span>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
+                <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </div>
           </div>
@@ -403,7 +424,7 @@ export default function MarketSelector() {
             <div className="flex items-center gap-2 font-semibold text-sm" style={{ color: brand.lime }}>
               <span>View in English</span>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
+                <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </div>
           </div>

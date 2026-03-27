@@ -85,23 +85,23 @@ export default function LandingPage({ market }: { market: Market }) {
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           {/* Logos */}
-          <a href={`/${market}`} className="flex items-center gap-3">
+          <a href={`/${market}`} className="flex items-center gap-4">
             <img
               src="/img/logos/DNAITSTAGE-06.png"
               alt="DNAIT STAGE"
-              className="h-8 w-auto"
+              className="h-10 md:h-12 w-auto"
             />
-            <div className="hidden sm:flex items-center gap-2 pl-3" style={{ borderLeft: `1px solid ${scrolled ? brand.border : `${brand.white}30`}` }}>
+            <div className="hidden sm:flex items-center gap-3 pl-4" style={{ borderLeft: `1px solid ${scrolled ? brand.border : `${brand.white}30`}` }}>
               <img
                 src="/img/logos/tennis-dna.png"
                 alt="Tennis DNA"
-                className="h-6 w-auto opacity-70 hover:opacity-100 transition-opacity"
+                className="h-8 w-auto rounded-lg opacity-80 hover:opacity-100 transition-opacity"
               />
-              <span className="text-xs" style={{ color: scrolled ? brand.textDisabled : `${brand.white}60` }}>×</span>
+              <span className="text-xs font-medium" style={{ color: scrolled ? brand.textDisabled : `${brand.white}60` }}>×</span>
               <img
-                src="/img/logos/logo-aitenis.webp"
+                src="/img/logos/logo-ai-tennis.jpeg"
                 alt="AIT Tenis"
-                className="h-6 w-auto opacity-70 hover:opacity-100 transition-opacity"
+                className="h-8 w-auto rounded-lg opacity-80 hover:opacity-100 transition-opacity"
               />
             </div>
           </a>
@@ -134,21 +134,21 @@ export default function LandingPage({ market }: { market: Market }) {
             >
               {market === 'es' ? (
                 <svg width="16" height="12" viewBox="0 0 16 12" className="rounded-sm overflow-hidden">
-                  <rect width="16" height="12" fill={brand.white}/>
-                  <rect width="16" height="0.92" y="0" fill={brand.flagUSRed}/>
-                  <rect width="16" height="0.92" y="1.84" fill={brand.flagUSRed}/>
-                  <rect width="16" height="0.92" y="3.68" fill={brand.flagUSRed}/>
-                  <rect width="16" height="0.92" y="5.52" fill={brand.flagUSRed}/>
-                  <rect width="16" height="0.92" y="7.36" fill={brand.flagUSRed}/>
-                  <rect width="16" height="0.92" y="9.2" fill={brand.flagUSRed}/>
-                  <rect width="16" height="0.92" y="11.04" fill={brand.flagUSRed}/>
-                  <rect width="6.4" height="6.46" fill={brand.flagUSBlue}/>
+                  <rect width="16" height="12" fill={brand.white} />
+                  <rect width="16" height="0.92" y="0" fill={brand.flagUSRed} />
+                  <rect width="16" height="0.92" y="1.84" fill={brand.flagUSRed} />
+                  <rect width="16" height="0.92" y="3.68" fill={brand.flagUSRed} />
+                  <rect width="16" height="0.92" y="5.52" fill={brand.flagUSRed} />
+                  <rect width="16" height="0.92" y="7.36" fill={brand.flagUSRed} />
+                  <rect width="16" height="0.92" y="9.2" fill={brand.flagUSRed} />
+                  <rect width="16" height="0.92" y="11.04" fill={brand.flagUSRed} />
+                  <rect width="6.4" height="6.46" fill={brand.flagUSBlue} />
                 </svg>
               ) : (
                 <svg width="16" height="12" viewBox="0 0 16 12" className="rounded-sm overflow-hidden">
-                  <rect width="16" height="3" fill={brand.red}/>
-                  <rect width="16" height="6" y="3" fill={brand.gold}/>
-                  <rect width="16" height="3" y="9" fill={brand.red}/>
+                  <rect width="16" height="3" fill={brand.red} />
+                  <rect width="16" height="6" y="3" fill={brand.gold} />
+                  <rect width="16" height="3" y="9" fill={brand.red} />
                 </svg>
               )}
               {switchLabel}
@@ -176,9 +176,9 @@ export default function LandingPage({ market }: { market: Market }) {
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                 {mobileMenuOpen ? (
-                  <><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></>
+                  <><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></>
                 ) : (
-                  <><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></>
+                  <><line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="18" x2="21" y2="18" /></>
                 )}
               </svg>
             </button>
@@ -275,7 +275,7 @@ function CTA({ data, onCTA }: { data: typeof content.es.cta; onCTA: () => void }
         >
           {data.button}
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
+            <path d="M5 12h14M12 5l7 7-7 7" />
           </svg>
         </button>
       </div>
