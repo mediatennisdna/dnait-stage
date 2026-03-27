@@ -1,12 +1,73 @@
 @import "tailwindcss";
 
+/**
+ * DNAIT STAGE Brand Colors
+ * Source: STAGE_BRANDING_PLAN.md
+ * Keep in sync with src/lib/brand.ts
+ *
+ * TEMA CLARO: Fondo blanco con textos oscuros
+ */
+:root {
+  /* Primary brand colors */
+  --brand-black: #050505;
+  --brand-lime: #CDDC39;
+  --brand-green: #8BC34A;
+  --brand-red: #C8102E;
+  --brand-white: #FFFFFF;
+  --brand-gold: #D4A853;
+
+  /* Background colors (tema claro) */
+  --brand-bg: #FFFFFF;
+  --brand-bg-alt: #F8F9FA;
+  --brand-surface: #FFFFFF;
+  --brand-surface-hover: #F3F4F6;
+
+  /* Derived colors */
+  --brand-lime-hover: #B0C033;
+  --brand-lime-light: rgba(205, 220, 57, 0.15);
+  --brand-green-light: rgba(139, 195, 74, 0.12);
+  --brand-red-light: rgba(200, 16, 46, 0.10);
+  --brand-gold-light: rgba(212, 168, 83, 0.12);
+
+  /* Text colors (tema claro - textos oscuros) */
+  --text-primary: #050505;
+  --text-secondary: #4B5563;
+  --text-muted: #6B7280;
+  --text-disabled: #9CA3AF;
+
+  /* Border colors (tema claro) */
+  --border-default: rgba(0, 0, 0, 0.10);
+  --border-hover: rgba(0, 0, 0, 0.20);
+
+  /* Flag colors */
+  --flag-us-blue: #002868;
+  --flag-us-red: #B22234;
+}
+
 @theme {
-  --color-black: #050505;
-  --color-black-light: #0a0f14;
-  --color-green: #BBFF67;
-  --color-green-dark: #9ae043;
-  --color-red: #C8102E;
-  --color-gold: #D4A853;
+  /* Map CSS vars to Tailwind theme */
+  --color-black: var(--brand-black);
+  --color-white: var(--brand-white);
+  --color-bg: var(--brand-bg);
+  --color-bg-alt: var(--brand-bg-alt);
+  --color-surface: var(--brand-surface);
+  --color-surface-hover: var(--brand-surface-hover);
+  --color-lime: var(--brand-lime);
+  --color-lime-hover: var(--brand-lime-hover);
+  --color-green: var(--brand-green);
+  --color-red: var(--brand-red);
+  --color-gold: var(--brand-gold);
+
+  /* Text colors */
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+
+  /* Flag colors */
+  --color-flag-us-blue: var(--flag-us-blue);
+  --color-flag-us-red: var(--flag-us-red);
+
+  /* Grays for compatibility */
   --color-gray-100: #F5F5F5;
   --color-gray-200: #E5E7EB;
   --color-gray-300: #D1D5DB;
@@ -16,9 +77,22 @@
   --color-gray-700: #374151;
   --color-gray-800: #1F2937;
   --color-gray-900: #111827;
+
   --font-display: 'Space Grotesk', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
 }
 
 html { scroll-behavior: smooth; }
 body { -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+/* Hide scrollbar */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Line clamp */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

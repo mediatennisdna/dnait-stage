@@ -152,7 +152,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
         />
       </head>
-      <body className="bg-[#050505] text-white antialiased overflow-x-hidden font-[Inter,system-ui,sans-serif]">
+      <body className="bg-[var(--brand-black)] text-white antialiased overflow-x-hidden font-[Inter,system-ui,sans-serif]">
         {children}
         {/* Google Analytics */}
         {GA_ID && (

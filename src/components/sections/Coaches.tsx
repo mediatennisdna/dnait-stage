@@ -2,6 +2,7 @@
 
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
+import { brand, teamColors } from '@/lib/brand'
 
 interface CoachesProps {
   data: {
@@ -14,90 +15,132 @@ interface CoachesProps {
       members: { name: string; role: string; bio: string }[]
     }[]
   }
+  market?: string
 }
 
-export default function Coaches({ data }: CoachesProps) {
+const teamLogos = ['/img/logos/tennis-dna.png', '/img/logos/logo-aitenis.webp']
+
+export default function Coaches({ data, market = 'es' }: CoachesProps) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section className="py-24 bg-[#0a0f14]/50" ref={ref}>
-      <div className="max-w-6xl mx-auto px-6">
+    <section className="py-24 overflow-hidden" style={{ backgroundColor: brand.bgAlt }} ref={ref}>
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <span className="inline-block bg-[rgba(187,255,103,0.08)] text-[#BBFF67] text-[11px] font-bold tracking-[3px] uppercase px-5 py-2 rounded-full border border-[rgba(187,255,103,0.15)] mb-6">
+          <span
+            className="inline-block text-[11px] font-bold tracking-[3px] uppercase px-5 py-2 rounded-full mb-6"
+            style={{ backgroundColor: brand.limeLight, color: brand.lime, border: `1px solid ${brand.lime}26` }}
+          >
             {data.badge}
           </span>
-          <h2 className="text-3xl md:text-5xl font-bold mb-4" style={{ fontFamily: "'Space Grotesk', system-ui" }}>
+          <h2 className="text-3xl md:text-5xl font-bold mb-4" style={{ fontFamily: "'Space Grotesk', system-ui", color: brand.textPrimary }}>
             {data.title}
           </h2>
-          <div className="w-12 h-1 bg-gradient-to-r from-[#BBFF67] to-[#C8102E] rounded mx-auto mb-6" />
-          <p className="text-[#9CA3AF] text-lg max-w-2xl mx-auto">{data.subtitle}</p>
+          <div className="w-12 h-1 rounded mx-auto mb-6" style={{ background: `linear-gradient(to right, ${brand.lime}, ${brand.red})` }} />
+          <p className="text-lg max-w-2xl mx-auto" style={{ color: brand.textSecondary }}>{data.subtitle}</p>
         </motion.div>
 
         {/* Ratio highlight */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.2 }}
-          className="text-center mb-12"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={inView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ delay: 0.2, duration: 0.5 }}
+          className="flex justify-center mb-16"
         >
-          <div className="inline-flex items-center gap-3 bg-[rgba(187,255,103,0.05)] border border-[rgba(187,255,103,0.1)] rounded-xl px-6 py-3">
-            <span className="text-3xl font-bold text-[#BBFF67]" style={{ fontFamily: "'Space Grotesk', system-ui" }}>6:1</span>
-            <span className="text-[#9CA3AF] text-sm text-left max-w-xs">{data.ratio}</span>
+          <div className="relative">
+            <div className="absolute inset-0 blur-xl rounded-full" style={{ background: `linear-gradient(to right, ${brand.lime}33, ${brand.red}33)` }} />
+            <div className="relative rounded-2xl px-8 py-6 flex items-center gap-6" style={{ backgroundColor: brand.bg, border: `1px solid ${brand.border}`, boxShadow: '0 4px 20px rgba(0,0,0,0.08)' }}>
+              <div className="text-center">
+                <span className="text-5xl font-bold block" style={{ color: brand.lime, fontFamily: "'Space Grotesk', system-ui" }}>6:1</span>
+                <span className="text-[10px] uppercase tracking-wider" style={{ color: brand.textMuted }}>{market === 'es' ? 'Ratio' : 'Ratio'}</span>
+              </div>
+              <div className="w-px h-12" style={{ backgroundColor: brand.border }} />
+              <p className="text-sm max-w-xs" style={{ color: brand.textSecondary }}>{data.ratio}</p>
+            </div>
           </div>
         </motion.div>
 
         {/* Teams */}
-        <div className="space-y-12">
-          {data.teams.map((team, ti) => (
-            <motion.div
-              key={ti}
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.3 + ti * 0.15 }}
-            >
-              <h3 className="text-lg font-bold mb-6 flex items-center gap-3" style={{ fontFamily: "'Space Grotesk', system-ui" }}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={ti === 0 ? '#BBFF67' : '#C8102E'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                </svg>
-                <span style={{ color: ti === 0 ? '#BBFF67' : '#C8102E' }}>{team.name}</span>
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {team.members.map((member, mi) => (
-                  <div
-                    key={mi}
-                    className="bg-[#050505] border border-white/5 rounded-2xl p-6 hover:border-white/10 transition-all group"
-                  >
-                    <div className="w-14 h-14 rounded-full overflow-hidden mb-4 border-2 border-white/10 relative">
-                      {/* Replace src with real coach photo: /img/coaches/firstname-lowercase.jpg */}
-                      <img
-                        src={`/img/coaches/${member.name.split(' ')[0].toLowerCase()}.jpg`}
-                        alt={member.name}
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                          const target = e.currentTarget;
-                          target.style.display = 'none';
-                          const fallback = target.nextElementSibling as HTMLElement;
-                          if (fallback) fallback.style.display = 'flex';
-                        }}
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 items-center justify-center text-lg font-bold text-[#BBFF67] hidden" style={{ fontFamily: "'Space Grotesk', system-ui" }}>
-                        {member.name.charAt(0)}
-                      </div>
-                    </div>
-                    <h4 className="text-white font-bold mb-1">{member.name}</h4>
-                    <p className="text-[#D4A853] text-xs font-semibold mb-3">{member.role}</p>
-                    <p className="text-[#6B7280] text-sm leading-relaxed">{member.bio}</p>
+        <div className="space-y-16">
+          {data.teams.map((team, teamIndex) => {
+            const teamColor = teamIndex === 0 ? teamColors.tdna : teamColors.ait
+            return (
+              <motion.div
+                key={teamIndex}
+                initial={{ opacity: 0, y: 30 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.3 + teamIndex * 0.2 }}
+              >
+                {/* Team header */}
+                <div className="flex items-center gap-4 mb-8">
+                  <img
+                    src={teamLogos[teamIndex]}
+                    alt={team.name}
+                    className="h-12 w-auto"
+                  />
+                  <div>
+                    <h3 className="text-xl font-bold" style={{ fontFamily: "'Space Grotesk', system-ui", color: brand.textPrimary }}>
+                      {team.name}
+                    </h3>
+                    <p className="text-sm" style={{ color: teamColor }}>
+                      {team.members.length} {market === 'es' ? 'miembros' : 'members'}
+                    </p>
                   </div>
-                ))}
-              </div>
-            </motion.div>
-          ))}
+                  <div className="flex-1 h-px ml-4" style={{ background: `linear-gradient(to right, ${teamColor}40, transparent)` }} />
+                </div>
+
+                {/* Team Members Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {team.members.map((member, mi) => (
+                    <motion.div
+                      key={mi}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={inView ? { opacity: 1, y: 0 } : {}}
+                      transition={{ delay: 0.4 + teamIndex * 0.2 + mi * 0.1 }}
+                      className="group rounded-2xl overflow-hidden transition-all hover:shadow-lg"
+                      style={{ backgroundColor: brand.bg, border: `1px solid ${brand.border}`, boxShadow: '0 4px 20px rgba(0,0,0,0.06)' }}
+                    >
+                      {/* Avatar area */}
+                      <div
+                        className="relative h-40 flex items-center justify-center"
+                        style={{ background: `linear-gradient(135deg, ${teamColor}20 0%, ${brand.bgAlt} 100%)` }}
+                      >
+                        <div
+                          className="w-20 h-20 rounded-full flex items-center justify-center text-3xl font-bold shadow-lg"
+                          style={{ backgroundColor: brand.bg, color: teamColor, border: `3px solid ${teamColor}` }}
+                        >
+                          {member.name.split(' ').map(n => n.charAt(0)).join('')}
+                        </div>
+
+                        {/* Role badge */}
+                        <div
+                          className="absolute bottom-3 left-3 px-3 py-1.5 rounded-lg text-xs font-bold"
+                          style={{ backgroundColor: `${teamColor}20`, color: teamColor, border: `1px solid ${teamColor}40` }}
+                        >
+                          {member.role}
+                        </div>
+                      </div>
+
+                      {/* Content */}
+                      <div className="p-6">
+                        <h4 className="text-lg font-bold mb-2" style={{ fontFamily: "'Space Grotesk', system-ui", color: brand.textPrimary }}>
+                          {member.name}
+                        </h4>
+                        <p className="text-sm leading-relaxed" style={{ color: brand.textSecondary }}>{member.bio}</p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            )
+          })}
         </div>
       </div>
     </section>

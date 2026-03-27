@@ -1,8 +1,8 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import { useRef, type ReactNode } from 'react'
+import { brand } from '@/lib/brand'
 
 const icons: Record<string, ReactNode> = {
   tennis: (
@@ -44,56 +44,142 @@ export default function About({ data, market }: AboutProps) {
   const inView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section className="py-24 relative" ref={ref}>
-      <div className="max-w-6xl mx-auto px-6">
-        {/* Header */}
+    <section className="py-24 relative overflow-hidden" ref={ref}>
+      {/* Background accent */}
+      <div className="absolute top-0 right-0 w-1/2 h-full pointer-events-none" style={{ background: `linear-gradient(to left, ${brand.lime}08, transparent)` }} />
+
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Main content with image */}
+        <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
+          {/* Text content */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.7 }}
+          >
+            <span
+              className="inline-block text-[11px] font-bold tracking-[3px] uppercase px-5 py-2 rounded-full mb-6"
+              style={{ backgroundColor: brand.limeLight, color: brand.lime, border: `1px solid ${brand.lime}26` }}
+            >
+              {data.badge}
+            </span>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4" style={{ fontFamily: "'Space Grotesk', system-ui" }}>
+              {data.title}
+            </h2>
+            <div className="w-12 h-1 rounded mb-6" style={{ background: `linear-gradient(to right, ${brand.lime}, ${brand.red})` }} />
+            <p className="text-lg leading-relaxed mb-8" style={{ color: brand.textSecondary }}>{data.description}</p>
+
+            {/* Marketing angle */}
+            <div className="pl-6 py-2 mb-8" style={{ borderLeft: `3px solid ${brand.red}` }}>
+              <p className="text-xl font-medium italic" style={{ color: brand.textPrimary }}>&ldquo;{data.marketingAngle}&rdquo;</p>
+            </div>
+
+            {/* Partner logos */}
+            <div className="flex items-center gap-8">
+              <div className="flex flex-col items-center">
+                <img src="/img/logos/tennis-dna.png" alt="Tennis DNA" className="h-14 w-auto mb-2" />
+                <span className="text-[10px] tracking-wider uppercase" style={{ color: brand.textMuted }}>USA</span>
+              </div>
+              <div className="flex flex-col items-center px-6">
+                <span className="text-2xl font-bold" style={{ color: brand.lime }}>+</span>
+              </div>
+              <div className="flex flex-col items-center">
+                <img src="/img/logos/logo-aitenis.webp" alt="AIT Tenis" className="h-14 w-auto mb-2" />
+                <span className="text-[10px] tracking-wider uppercase" style={{ color: brand.textMuted }}>España</span>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Image collage */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="relative"
+          >
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-4">
+                <div className="aspect-[4/3] rounded-2xl overflow-hidden">
+                  <img
+                    src="/img/activities/day-2.jpg"
+                    alt="Tennis training"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="aspect-square rounded-2xl overflow-hidden">
+                  <img
+                    src="/img/venues/escorial.jpg"
+                    alt="El Escorial"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+              </div>
+              <div className="space-y-4 pt-8">
+                <div className="aspect-square rounded-2xl overflow-hidden">
+                  <img
+                    src="/img/activities/day-4.jpg"
+                    alt="Adventure activities"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="aspect-[4/3] rounded-2xl overflow-hidden">
+                  <img
+                    src="/img/activities/Playa-de-las-Arenas-Valencia.jpg"
+                    alt="Valencia beach"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Floating badge */}
+            <div className="absolute -bottom-4 -left-4 rounded-2xl p-4 shadow-xl" style={{ backgroundColor: brand.bg, border: `1px solid ${brand.border}` }}>
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: brand.lime }}>
+                  <span className="text-xl font-bold" style={{ color: brand.black, fontFamily: "'Space Grotesk', system-ui" }}>8</span>
+                </div>
+                <div>
+                  <p className="font-bold" style={{ color: brand.textPrimary }}>{market === 'es' ? 'Días' : 'Days'}</p>
+                  <p className="text-xs" style={{ color: brand.textMuted }}>{market === 'es' ? 'de experiencia' : 'of experience'}</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Feature Cards */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="max-w-3xl mb-16"
+          transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <span className="inline-block bg-[rgba(187,255,103,0.08)] text-[#BBFF67] text-[11px] font-bold tracking-[3px] uppercase px-5 py-2 rounded-full border border-[rgba(187,255,103,0.15)] mb-6">
-            {data.badge}
-          </span>
-          <h2 className="text-3xl md:text-5xl font-bold mb-4" style={{ fontFamily: "'Space Grotesk', system-ui" }}>
-            {data.title}
-          </h2>
-          <div className="w-12 h-1 bg-gradient-to-r from-[#BBFF67] to-[#C8102E] rounded mb-6" />
-          <p className="text-[#9CA3AF] text-lg leading-relaxed">{data.description}</p>
+          <h3 className="text-center text-sm font-bold uppercase tracking-widest mb-8" style={{ color: brand.textMuted }}>
+            {market === 'es' ? '¿Qué incluye?' : "What's included?"}
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {data.features.map((feature, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.4, delay: 0.5 + i * 0.1 }}
+                className="group rounded-2xl p-6 transition-all duration-300"
+                style={{ backgroundColor: brand.surface, border: `1px solid ${brand.border}` }}
+              >
+                <div
+                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-all"
+                  style={{ backgroundColor: brand.limeLight, color: brand.lime }}
+                >
+                  {icons[feature.icon]}
+                </div>
+                <h4 className="text-base font-bold mb-2" style={{ fontFamily: "'Space Grotesk', system-ui" }}>
+                  {feature.title}
+                </h4>
+                <p className="text-sm leading-relaxed" style={{ color: brand.textSecondary }}>{feature.text}</p>
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
-
-        {/* Marketing angle */}
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={inView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="border-l-3 border-[#C8102E] pl-6 mb-16 py-2"
-          style={{ borderLeftWidth: '3px', borderLeftColor: '#C8102E' }}
-        >
-          <p className="text-white text-xl font-medium italic">&ldquo;{data.marketingAngle}&rdquo;</p>
-        </motion.div>
-
-        {/* Feature Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {data.features.map((feature, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
-              className="group bg-[#0a0f14] border border-white/5 rounded-2xl p-8 hover:border-[#BBFF67]/20 transition-all duration-300"
-            >
-              <div className="w-12 h-12 rounded-xl bg-[rgba(187,255,103,0.08)] flex items-center justify-center text-[#BBFF67] mb-5 group-hover:bg-[rgba(187,255,103,0.15)] transition-all">
-                {icons[feature.icon]}
-              </div>
-              <h3 className="text-lg font-bold mb-3" style={{ fontFamily: "'Space Grotesk', system-ui" }}>
-                {feature.title}
-              </h3>
-              <p className="text-[#9CA3AF] text-sm leading-relaxed">{feature.text}</p>
-            </motion.div>
-          ))}
-        </div>
       </div>
     </section>
   )

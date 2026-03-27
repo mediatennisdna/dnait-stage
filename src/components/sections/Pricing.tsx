@@ -2,6 +2,7 @@
 
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
+import { brand } from '@/lib/brand'
 
 interface PricingProps {
   data: {
@@ -41,14 +42,17 @@ export default function Pricing({ data, market, onCTA }: PricingProps) {
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
-          <span className="inline-block bg-[rgba(187,255,103,0.08)] text-[#BBFF67] text-[11px] font-bold tracking-[3px] uppercase px-5 py-2 rounded-full border border-[rgba(187,255,103,0.15)] mb-6">
+          <span
+            className="inline-block text-[11px] font-bold tracking-[3px] uppercase px-5 py-2 rounded-full mb-6"
+            style={{ backgroundColor: brand.limeLight, color: brand.lime, border: `1px solid ${brand.lime}26` }}
+          >
             {data.badge}
           </span>
           <h2 className="text-3xl md:text-5xl font-bold mb-4" style={{ fontFamily: "'Space Grotesk', system-ui" }}>
             {data.title}
           </h2>
-          <div className="w-12 h-1 bg-gradient-to-r from-[#BBFF67] to-[#C8102E] rounded mx-auto mb-6" />
-          <p className="text-[#9CA3AF] text-lg max-w-2xl mx-auto">{data.subtitle}</p>
+          <div className="w-12 h-1 rounded mx-auto mb-6" style={{ background: `linear-gradient(to right, ${brand.lime}, ${brand.red})` }} />
+          <p className="text-lg max-w-2xl mx-auto" style={{ color: brand.textSecondary }}>{data.subtitle}</p>
         </motion.div>
 
         {/* Pricing Cards */}
@@ -59,14 +63,19 @@ export default function Pricing({ data, market, onCTA }: PricingProps) {
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
-              className={`relative rounded-2xl p-8 transition-all duration-300 ${
-                pack.recommended
-                  ? 'bg-gradient-to-b from-[#0a0f14] to-[#050505] border-2 border-[#BBFF67]/30 md:scale-105 md:-my-2 shadow-[0_0_40px_rgba(187,255,103,0.08)]'
-                  : 'bg-[#0a0f14] border border-white/5 hover:border-white/10'
-              }`}
+              className="relative rounded-2xl p-8 transition-all duration-300"
+              style={{
+                background: pack.recommended ? `linear-gradient(to bottom, ${brand.bg}, ${brand.bgAlt})` : brand.surface,
+                border: pack.recommended ? `2px solid ${brand.lime}` : `1px solid ${brand.border}`,
+                transform: pack.recommended ? 'scale(1.05)' : 'scale(1)',
+                boxShadow: pack.recommended ? `0 0 40px ${brand.limeLight}` : '0 4px 20px rgba(0,0,0,0.08)'
+              }}
             >
               {pack.tag && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#BBFF67] text-[#050505] text-[10px] font-bold tracking-widest px-4 py-1 rounded-full">
+                <div
+                  className="absolute -top-3 left-1/2 -translate-x-1/2 text-[10px] font-bold tracking-widest px-4 py-1 rounded-full"
+                  style={{ backgroundColor: brand.lime, color: brand.black }}
+                >
                   {pack.tag}
                 </div>
               )}
@@ -74,21 +83,21 @@ export default function Pricing({ data, market, onCTA }: PricingProps) {
               <h3 className="text-xl font-bold mb-1" style={{ fontFamily: "'Space Grotesk', system-ui" }}>
                 {pack.name}
               </h3>
-              <p className="text-[#9CA3AF] text-sm mb-6">{pack.description}</p>
+              <p className="text-sm mb-6" style={{ color: brand.textSecondary }}>{pack.description}</p>
 
               <div className="mb-6">
-                <span className="text-[#9CA3AF] text-2xl align-top">{data.currency}</span>
+                <span className="text-2xl align-top" style={{ color: brand.textSecondary }}>{data.currency}</span>
                 <span className="text-5xl font-bold" style={{ fontFamily: "'Space Grotesk', system-ui" }}>{pack.price}</span>
-                <span className="text-[#9CA3AF] text-sm ml-2">/ {pack.period}</span>
+                <span className="text-sm ml-2" style={{ color: brand.textSecondary }}>/ {pack.period}</span>
               </div>
 
               <ul className="space-y-3 mb-8">
                 {pack.features.map((f, j) => (
                   <li key={j} className="flex items-start gap-3 text-sm">
-                    <svg className="w-5 h-5 mt-0.5 flex-shrink-0 text-[#BBFF67]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: brand.lime }} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <polyline points="20 6 9 17 4 12"/>
                     </svg>
-                    <span className="text-[#D1D5DB]">{f}</span>
+                    <span style={{ color: brand.textSecondary }}>{f}</span>
                   </li>
                 ))}
               </ul>
@@ -96,11 +105,12 @@ export default function Pricing({ data, market, onCTA }: PricingProps) {
               <button
                 onClick={onCTA}
                 aria-label={`${pack.cta} — ${pack.name}`}
-                className={`w-full py-3.5 rounded-xl font-bold text-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#BBFF67] focus:ring-offset-2 focus:ring-offset-[#050505] ${
-                  pack.recommended
-                    ? 'bg-[#BBFF67] text-[#050505] hover:bg-[#9ae043] hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(187,255,103,0.25)]'
-                    : 'bg-white/8 text-white border border-white/10 hover:bg-white/12'
-                }`}
+                className="w-full py-3.5 rounded-xl font-bold text-sm transition-all focus:outline-none focus:ring-2"
+                style={{
+                  backgroundColor: pack.recommended ? brand.lime : brand.bgAlt,
+                  color: pack.recommended ? brand.black : brand.textPrimary,
+                  border: pack.recommended ? 'none' : `1px solid ${brand.border}`
+                }}
               >
                 {pack.cta}
               </button>
@@ -116,8 +126,8 @@ export default function Pricing({ data, market, onCTA }: PricingProps) {
           className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12"
         >
           {/* Extras */}
-          <div className="bg-[#0a0f14] border border-white/5 rounded-2xl p-8">
-            <h3 className="text-lg font-bold mb-6 flex items-center gap-2 text-[#E8BF6A]" style={{ fontFamily: "'Space Grotesk', system-ui" }}>
+          <div className="rounded-2xl p-8" style={{ backgroundColor: brand.surface, border: `1px solid ${brand.border}` }}>
+            <h3 className="text-lg font-bold mb-6 flex items-center gap-2" style={{ color: brand.gold, fontFamily: "'Space Grotesk', system-ui" }}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/>
               </svg>
@@ -126,16 +136,16 @@ export default function Pricing({ data, market, onCTA }: PricingProps) {
             <div className="space-y-4">
               {data.extras.map((extra, i) => (
                 <div key={i} className="flex items-center justify-between gap-4">
-                  <span className="text-[#9CA3AF] text-sm">{extra.name}</span>
-                  <span className="text-white font-bold text-sm whitespace-nowrap">{data.currency}{extra.price}</span>
+                  <span className="text-sm" style={{ color: brand.textSecondary }}>{extra.name}</span>
+                  <span className="font-bold text-sm whitespace-nowrap" style={{ color: brand.textPrimary }}>{data.currency}{extra.price}</span>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Discounts */}
-          <div className="bg-[#0a0f14] border border-white/5 rounded-2xl p-8">
-            <h3 className="text-lg font-bold mb-6 flex items-center gap-2 text-[#BBFF67]" style={{ fontFamily: "'Space Grotesk', system-ui" }}>
+          <div className="rounded-2xl p-8" style={{ backgroundColor: brand.surface, border: `1px solid ${brand.border}` }}>
+            <h3 className="text-lg font-bold mb-6 flex items-center gap-2" style={{ color: brand.lime, fontFamily: "'Space Grotesk', system-ui" }}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/>
               </svg>
@@ -144,12 +154,12 @@ export default function Pricing({ data, market, onCTA }: PricingProps) {
             <div className="space-y-4">
               {data.discounts.map((d, i) => (
                 <div key={i} className="flex items-center justify-between gap-4">
-                  <span className="text-[#9CA3AF] text-sm">{d.name} — {d.condition}</span>
-                  <span className="text-[#BBFF67] font-bold text-sm whitespace-nowrap">{d.percent}</span>
+                  <span className="text-sm" style={{ color: brand.textSecondary }}>{d.name} — {d.condition}</span>
+                  <span className="font-bold text-sm whitespace-nowrap" style={{ color: brand.lime }}>{d.percent}</span>
                 </div>
               ))}
             </div>
-            <p className="text-[#9CA3AF] text-sm mt-4">{data.discountNote}</p>
+            <p className="text-sm mt-4" style={{ color: brand.textSecondary }}>{data.discountNote}</p>
           </div>
         </motion.div>
       </div>
